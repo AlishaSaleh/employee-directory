@@ -2,6 +2,7 @@
 import './App.css';
 //import Jumbotron from './components/Jumbotron'
 import Jumbotron from 'react-bootstrap/Jumbotron'
+import SearchForm from './components/SearchForm';
 
 function App() {
   const jumboStyle = {
@@ -14,6 +15,7 @@ function App() {
     <>
       <Jumbotron style={jumboStyle}>
         <h1>Employee Directory</h1>
+        <SearchForm />
       </Jumbotron>
     </>
   );
