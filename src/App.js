@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+//import Jumbotron from './components/Jumbotron'
+import Jumbotron from 'react-bootstrap/Jumbotron'
 
 function App() {
+  const jumboStyle = {
+    color: "#FFFFFF",
+    backgroundColor: "#6495ed",
+    textAlign: "center",
+    fontFamily: "Arial"
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Jumbotron style={jumboStyle}>
+        <h1>Employee Directory</h1>
+      </Jumbotron>
+    </>
   );
 }
 
