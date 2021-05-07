@@ -1,4 +1,5 @@
 form.search {
+  width: 500px;
   overflow: auto;
   margin-bottom: 10px;
 }
