@@ -71,7 +71,7 @@ function TableContainer() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><img src={employees.people[0].picture.thumbnail}/></td>
+                        <td><img src={employees.people[0].picture.thumbnail} alt={employees.people[0].name.first}/></td>
                         <td>{employees.people[0].name.first} {employees.people[0].name.last}</td>
                         <td>{employees.people[0].cell}</td>
                         <td>{employees.people[0].email}</td>
