@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import API from "../../utils/API";
+import TableItem from "../TableItem";
 
 function TableContainer() {
     // setting the state for the table data
@@ -26,7 +27,7 @@ function TableContainer() {
             },
         ]
     });
-    
+
     // function to handle ascending/descending order
     const handleSorting = heading => {
         if (employees.order === "descend") {
@@ -53,7 +54,8 @@ function TableContainer() {
                 people: res.data.results,
                 filteredUsers: res.data.results
             });
-           // console.log(employees.people[0].picture.thumbnail);
+            console.log(employees)
+            // console.log(employees.people[0].picture.thumbnail);
         })
     }, []);
 
@@ -70,13 +72,21 @@ function TableContainer() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><img src={employees.people[0].picture.thumbnail} alt={employees.people[0].name.first}/></td>
+
+                    {employees.people.map(employee => (
+                        <TableItem
+                            image={employee.picture.thumbnail}
+                            name={employee.name.first}
+                            phone={employee.cell}
+                            email={employee.email}
+                            age={employee.dob.age} />
+                    ))}
+                    {/* <td><img src={employees.people[0].picture.thumbnail} alt={employees.people[0].name.first}/></td>
                         <td>{employees.people[0].name.first} {employees.people[0].name.last}</td>
                         <td>{employees.people[0].cell}</td>
                         <td>{employees.people[0].email}</td>
-                        <td>{employees.people[0].dob.age}</td>
-                    </tr>
+                        <td>{employees.people[0].dob.age}</td> */}
+
                 </tbody>
             </Table>
         </>
