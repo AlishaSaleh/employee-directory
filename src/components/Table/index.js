@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
 import API from "../../utils/API";
-import TableItem from "../TableItem";
+import SearchForm from '../SearchForm';
+import TableContext from "../../utils/TableContext";
+import TableBody from "../TableBody";
+
+
 
 function TableContainer() {
     // setting the state for the table data
@@ -23,7 +26,7 @@ function TableContainer() {
                 name: "Email", width: "20%",
             },
             {
-                name: "DOB", width: "10%",
+                name: "Age", width: "10%",
             },
         ]
     });
@@ -43,9 +46,51 @@ function TableContainer() {
                 }
             )
         }
+        const compareFnc = (a, b) => {
+            if (employees.order === "ascend") {
+                if (a[heading] === undefined) {
+                    return 1;
+                } else if (b[heading] === undefined) {
+                    return -1;
+                } else if (heading === "name") {
+                    return a[heading].first.localeCompare(b[heading].first);
+                } else {
+                    return b[heading] - a[heading];
+                }
+            } else {
+                if (a[heading] === undefined) {
+                    return 1;
+                } else if (b[heading] === undefined) {
+                    return -1;
+                } else if (heading === "name") {
+                    return b[heading].first.localeCompare(a[heading].first);
+                } else {
+                    return b[heading] - a[heading];
+                }
+            }
+        }
+        const sortedEmployees = employees.filteredUsers.sort(compareFnc);
+
+        setEmployees({
+            ...employees,
+            filteredUsers: sortedEmployees
+        });
     };
 
-    // api call as useEffect
+    const handleSearchChange = event => {
+        const filter = event.target.value;
+        const filteredList = employees.people.filter(item => {
+            let values = item.name.first.toLowerCase();
+            return values.indexOf(filter.toLowerCase()) !== -1;
+        });
+
+        setEmployees({
+            ...employees,
+            filteredUsers: filteredList
+        });
+    };
+
+    // api call in useEffect
     useEffect(() => {
         API.getEmployees().then(res => {
             console.log(res);
@@ -61,35 +106,10 @@ function TableContainer() {
 
     return (
         <>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Age</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {employees.people.map(employee => (
-                        <TableItem
-                            image={employee.picture.thumbnail}
-                            firstname={employee.name.first}
-                            lastname={employee.name.last}
-                            phone={employee.cell}
-                            email={employee.email}
-                            age={employee.dob.age} />
-                    ))}
-                    {/* <td><img src={employees.people[0].picture.thumbnail} alt={employees.people[0].name.first}/></td>
-                        <td>{employees.people[0].name.first} {employees.people[0].name.last}</td>
-                        <td>{employees.people[0].cell}</td>
-                        <td>{employees.people[0].email}</td>
-                        <td>{employees.people[0].dob.age}</td> */}
-
-                </tbody>
-            </Table>
+            <TableContext.Provider value={{ employees, handleSearchChange, handleSorting }}>
+                <SearchForm />
+                <TableBody />
+            </TableContext.Provider>
         </>
     )
 }
