@@ -76,7 +76,8 @@ function TableContainer() {
                     {employees.people.map(employee => (
                         <TableItem
                             image={employee.picture.thumbnail}
-                            name={employee.name.first}
+                            firstname={employee.name.first}
+                            lastname={employee.name.last}
                             phone={employee.cell}
                             email={employee.email}
                             age={employee.dob.age} />
