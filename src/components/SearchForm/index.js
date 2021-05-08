@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import TableContext from "../../utils/TableContext";
 import "./style.css";
 
-function SearchForm(props) {
+function SearchForm() {
 
   const context = useContext(TableContext);
 
@@ -11,7 +11,6 @@ function SearchForm(props) {
       <div className="form-group">
         <label htmlFor="search">Search:</label>
         <input
-          value={props.search}
           onChange={e => context.handleSearchChange(e)}
           type="text"
           className="form-control"

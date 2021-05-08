@@ -1,6 +1,4 @@
-//import logo from './logo.svg';
 import './App.css';
-//import Jumbotron from './components/Jumbotron'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from './components/Container';
 import { Col, Row } from 'react-bootstrap';
@@ -10,7 +8,7 @@ function App() {
   const jumboStyle = {
     color: "#FFFFFF",
     backgroundColor: "#6495ed",
-    //textAlign: "center",
+    textAlign: "center",
     fontFamily: "Arial"
   };
   return (

@@ -1,7 +1,5 @@
-  
 .col {
-    cursor: pointer;
-    
+    cursor: pointer; 
 }
 
 .col .pointer:after {
