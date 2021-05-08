@@ -17,9 +17,9 @@ function SearchForm(props) {
           className="form-control"
           placeholder="Type in a name to search"
         />
-        <button type="submit" className="btn btn-success">
+        {/* <button type="submit" className="btn btn-success">
           Search
-        </button>
+        </button> */}
       </div>
     </form>
   );

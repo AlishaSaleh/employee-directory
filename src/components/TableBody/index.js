@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import TableContext from "../../utils/TableContext";
 import TableItem from "../TableItem";
 import { Table } from "react-bootstrap";
-
+import "./style.css";
 
 function TableBody() {
     const context = useContext(TableContext);
@@ -11,11 +11,26 @@ function TableBody() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Image</th>
+                        {/* <th>Image</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Age</th>
+                        <th>Age</th> */}
+                        {context.employees.headings.map(({ name, width }) => {
+                            return (
+                                <th
+                                    className="col"
+                                    key={name}
+                                    style={{ width }}
+                                    onClick={() => {
+                                        context.handleSorting(name.toLowerCase());
+                                    }}
+                                >
+                                    {name}
+                                    <button className="btn pointer"></button>
+                                </th>
+                            );
+                        })}
                     </tr>
                 </thead>
                 <tbody>
