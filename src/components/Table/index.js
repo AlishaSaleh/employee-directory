@@ -4,8 +4,6 @@ import SearchForm from '../SearchForm';
 import TableContext from "../../utils/TableContext";
 import TableBody from "../TableBody";
 
-
-
 function TableContainer() {
     // setting the state for the table data
     const [employees, setEmployees] = useState({

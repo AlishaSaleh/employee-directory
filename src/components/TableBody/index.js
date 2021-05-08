@@ -42,7 +42,9 @@ function TableBody() {
                             lastname={employee.name.last}
                             phone={employee.cell}
                             email={employee.email}
-                            age={employee.dob.age} />
+                            age={employee.dob.age}
+                            key={employee.id.value}
+                     />
                     ))}
                     {/* <td><img src={employees.people[0].picture.thumbnail} alt={employees.people[0].name.first}/></td>
                         <td>{employees.people[0].name.first} {employees.people[0].name.last}</td>
