@@ -93,13 +93,13 @@ function TableContainer() {
     // api call in useEffect
     useEffect(() => {
         API.getEmployees().then(res => {
-            console.log(res);
+            // console.log(res);
             setEmployees({
                 ...employees,
                 people: res.data.results,
                 filteredUsers: res.data.results
             });
-            console.log(employees)
+            // console.log(employees)
             // console.log(employees.people[0].picture.thumbnail);
         })
     }, []);
